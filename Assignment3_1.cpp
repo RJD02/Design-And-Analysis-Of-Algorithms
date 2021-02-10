@@ -44,13 +44,13 @@ public:
         std::vector<bool> visited(V, 0);
         DFSUtil(s, visited);
         int count = 0;
-        for(int i = 0; i < V; i++) {
-            // cout << visited[i] << " ";
-            if(visited[i] == true)
-            count++;
-            // return 0;
-        }
-        if(count == V) return 1;
+        // for(int i = 0; i < V; i++) {
+        //     // cout << visited[i] << " ";
+        //     if(visited[i] == true)
+        //     count++;
+        //     // return 0;
+        // }
+        if(adj[upper_val] == V) return 1;
         else return 0;
         // cout << endl;
     }
@@ -83,7 +83,7 @@ int dist(int x1, int y1, int x2, int y2) {
 void connect(std::vector<std::vector<int>> v, Graph &g) {
     for(int i = 0; i < v.size(); i++) {
         for(int j = i + 1; j < v.size(); j++) {
-            if(dist(v[i][0], v[i][1], v[j][1], v[j][1]) <= 200) {
+            if(dist(v[i][0], v[i][1], v[j][1], v[j][1]) < 200) {
                 g.addEdge(i, j);
             }
             // if(abs(v[i][0] - v[j][0]) <= 100 && abs(v[j][0] - v[i][0]) <= 100) {
