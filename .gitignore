@@ -4,4 +4,18 @@ timeit.dat
 DFS - Cycle Detection in Directed Graph.cpp
 dfs.cpp
 dfs2.cpp
-
+r.out
+in.txt
+output.txt
+selectionSort.cpp
+sort_assignment.cpp
+escape.cpp
+dfs_for_disconnected.cpp
+dijkstra_algorithm.cpp
+dijkstrasAlgorithm.cpp
+find_number_of_nodes.cpp
+bfs.cpp
+check.bat
+Undirected_Graph.cpp
+PAYMENT_RECEIPT.pdf
+Directed_Graph.cpp
