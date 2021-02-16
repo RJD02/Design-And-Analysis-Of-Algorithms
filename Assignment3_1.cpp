@@ -8,6 +8,7 @@ int L, W, N;
 int upper_val, lower_val;
 bool upper_flag, lower_flag;
 std::vector<int> ret;
+int lower_vertex = 0, upper_vertex = 0;
 class Graph {
 private:
     int V;
@@ -44,15 +45,8 @@ public:
         std::vector<bool> visited(V, 0);
         DFSUtil(s, visited);
         int count = 0;
-        // for(int i = 0; i < V; i++) {
-        //     // cout << visited[i] << " ";
-        //     if(visited[i] == true)
-        //     count++;
-        //     // return 0;
-        // }
-        if(adj[upper_val] == V) return 1;
-        else return 0;
-        // cout << endl;
+        if(visited[upper_vertex] == false) return 1;
+        return 0;
     }
     int getV() {
         return V;
@@ -61,20 +55,6 @@ public:
         return number_of_edges;
     }
 };
-
-// void display(Graph g, int start) {
-//     for(int i = start + 1; i < g.getV(); i++) {
-//         cout << i << " parent = " << parent[i] << " ";
-//     }
-//     cout << endl;
-// }
-
-// void displayRet() {
-//     for(int i = 0; i < ret.size(); i++) {
-//         cout << ret[i] << " ";
-//     }
-//     cout << endl;
-// }
 
 int dist(int x1, int y1, int x2, int y2) {
     return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
@@ -98,11 +78,19 @@ void check(std::vector<std::vector<int>> v, Graph &g) {
     for(int i = 0; i < v.size(); i++) {
         if(v[i][1] <= 100) {
             lower_flag = true;
-            lower_val = min(v[i][1], lower_val);
+            // lower_val = min(v[i][1], lower_val);
+            if(lower_val < v[i][1]) {
+                lower_val = v[i][1];
+                lower_vertex = i;
+            }
         }
         if(W - v[i][0] <= 100) {
             upper_flag = true;
-            upper_val = max(v[i][0], upper_val);
+            // upper_val = max(v[i][0], upper_val);
+            if(upper_val < v[i][0]) {
+                upper_val = v[i][0];
+                upper_vertex = i;
+            }
         }
     }
 }
@@ -119,7 +107,7 @@ int main() {
             cin >> x >> y;
             a[i].push_back(y);
             a[i].push_back(x);
-            // cout << a[i][0] << " " << a[i][1] << endl;;
+            cout << a[i][0] << " " << a[i][1] << endl;;
         }
         Graph g(N);
         connect(a, g);
@@ -130,15 +118,6 @@ int main() {
             return 0;
         }
         cout << "Case#" << t << ": " << g.DFS(lower_val) << endl;
-        // display(g, start);
-        // cout << upper_val << " " << lower_val;
-        // sort(ret.begin(), ret.end());
-        // // displayRet();
-        // if(ret[0] == 0 && ret[ret.size() - 1] == upper_val && upper_flag == true && lower_flag == true) {
-        //     cout << 0;
-        // }
-        // else cout << 1;
-        // cout << endl << g.getNumberOfEdges();
     }
     return 0;
 }
