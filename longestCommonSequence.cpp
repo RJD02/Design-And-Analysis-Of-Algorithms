@@ -11,29 +11,17 @@ int longestCommonSubsequence(string s1, string s2) {
 	int m = s1.length();
 	int n = s2.length();
 	int LCS[m + 1][n + 1];
-	for(int i = 0; i < m + 2; i++) {
-		LCS[i][n + 1] = 0;
-	}
-	for(int i = 0; i < n + 2; i++) {
-		LCS[m + 1][i] = 0;
-	}
-	for(int c = n; c >= 0; c--) {
-		for(int r = m; r >= 0; r--) {
-			if(s1[r] == s2[c])
-				LCS[r][c] = 1 + LCS[r + 1][c + 1];
+	for(int c = 0; c < n + 1; c++) {
+		for(int r = 0; r < m + 1; r++) {
+			if(r == 0 || c == 0)
+				LCS[r][c] = 0;
+			else if(s1[r - 1] == s2[c - 1])
+				LCS[r][c] = LCS[r - 1][c] + 1;
 			else
-				LCS[r][c] = max(LCS[r + 1][c], LCS[r][c + 1]);
-			// cout << LCS[r][c] << " ";
+				LCS[r][c] = max(LCS[r - 1][c], LCS[r][c - 1]);
 		}
-		// cout << endl;
 	}
-	for(int i = 0; i < n + 1; i++) {
-		for(int j = 0; j < m + 1; j++) {
-			cout << LCS[i][j] << " ";
-		}
-		cout << endl;
-	}
-	return LCS[0][0] - 1;
+	return LCS[m][n];
 }
 
 
