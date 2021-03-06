@@ -3,15 +3,6 @@ using namespace std;
 
 #define endl "\n"
 
-void print(int m, int n, int arr[100][]) {
-	for(int i = 0; i < m; i++) {
-		for(int j = 0; j < n; j++) {
-			cout << arr[i][j] << " ";
-		}
-		cout << endl;
-	}
-}
-
 int dpCommonSubwordLength(string s1, string s2) {
 	if(s1.length() == 0 || s2.length() == 0)
 		return 0;
@@ -27,7 +18,6 @@ int dpCommonSubwordLength(string s1, string s2) {
 	for(int c = 0; c <= n + 1; c++) {
 		LCW[m + 1][c] = 0;
 	}
-	print(m, n, LCW);
 	for(int c = n; c >= 0; --c) {
 		for(int r = m; r >= 0; --r) {
 			if(s1[r] == s2[c])
